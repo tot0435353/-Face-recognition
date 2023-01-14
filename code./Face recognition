@@ -1,0 +1,25 @@
+async function detectFaces(imageUrl) {
+    const response = await fetch('https://api.deepai.org/api/face-detection', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Api-Key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'
+        },
+        body: JSON.stringify({
+            image: imageUrl
+        })
+    });
+    const json = await response.json();
+    return json.output;
+}
+
+
+This function takes in an image URL as a parameter and makes a POST request to the DeepAI Face Recognition API. The response of the request is parsed as JSON and returned as the output of the function.
+
+You will need to sign up for an API key from deepAI website and replace the 'Api-Key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K' in the headers with the key you got from signing up.
+
+You can then use this function in your code as follows:
+
+const imageUrl = 'https://example.com/image.jpg';
+const faces = await detectFaces(imageUrl);
+console.log(faces);
